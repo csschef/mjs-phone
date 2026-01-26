@@ -1,4 +1,5 @@
 const contactForm = document.getElementById('create-contact-form'); // Hämtar det korrekta formuläret och sparar i en variabel
+const deleteAllBtn = document.getElementById('delete-all-contacts-btn') // raderar alla kontakter
 const contactName = document.getElementById('name'); // Hämtar namn-inputfältet och sparar i en variabel
 const contactPhone = document.getElementById('phone'); // Hämtar telefonnummer-inputfältet och sparar i en variabel
 const contactList = document.getElementById('contact-list'); // Hämtar kontaktlistan och sparar i en variabel
@@ -65,8 +66,6 @@ function addContact(name, phone) {
     deleteBtn.classList.add('icon-btn');
     deleteBtn.setAttribute('aria-label', 'Ta bort kontakt');
 
-
-
     // Event listener för Ändra/Spara-knappen
     editBtn.addEventListener('click', () => {
         const isDisabled = nameInput.disabled;
@@ -102,16 +101,12 @@ function addContact(name, phone) {
         }
     });
 
-
-
-    // Event listener för Ta bort-knappen
     deleteBtn.addEventListener('click', () => {
-        li.remove();
+    li.remove();
 
-        beatitSound.currentTime = 0;
-        beatitSound.play();
+    beatitSound.currentTime = 0;
+    beatitSound.play();
     });
-
 
 
     // Bygger upp raden
@@ -123,3 +118,14 @@ function addContact(name, phone) {
     li.appendChild(form);
     contactList.appendChild(li);
 }
+
+ // Event listener för Ta bort-knappen
+deleteAllBtn.addEventListener('click', () => {
+    if (!contactList.children.length) return;
+
+    if (!confirm('Delete all contacts?')) return;
+
+    contactList.innerHTML = '';
+    beatitSound.currentTime = 0;
+    beatitSound.play();
+});
