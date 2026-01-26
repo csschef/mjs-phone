@@ -105,7 +105,14 @@ h1, h2 {
     min-width: 0;
 }
 
-.create-contact-btn {
+#button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6px;
+}
+
+.create-contact-btn,
+.delete-all-contacts-btn {
     margin-top: 6px;
     background: #444;
     color: #fff;
