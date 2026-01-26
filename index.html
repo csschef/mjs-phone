@@ -20,59 +20,82 @@
     <main>
         <img
     id="reflection"
-    src="Assets/img/reflection.png"
+    src="Assets/img/reflection2.png"
     alt=""
-    aria-hidden="true">
+    aria-hidden="true"> 
+        <div class="camera-hole"></div>
+        <div class="glass-layer">
+            <section class="contact-section" id="contact-section">
+                <h2>Contacts</h2>
+                <ul id="contact-list" aria-live="polite">
 
-        <section class="create-contact" id="create-contact-section">
-            <h1>Add friends</h1>
+                </ul>
+                <!-- Kommer behöva lägga till denna som variabel i JS för att skapa innerHtml -->
+                <div id = "error-message"></div> 
+            </section>
 
-    <form id="create-contact-form" autocomplete="off">
-        <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Name"
-            class="input-field"
-            required
-        >
+            <section class="create-contact" id="create-contact-section">
+                <h1>Add contact</h1>
 
-        <input
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="Phone number"
-            class="input-field"
-            required
-        >
-
-        <div id="button-wrapper">
-            <button type="submit" class="create-contact-btn">
-                <i class="fas fa-plus" aria-hidden="true"></i>
-                <span>add</span>
-            </button>
-            <button
-                type="button"
-                id="delete-all-contacts-btn"
-                class="delete-all-contacts-btn"
+        <form id="create-contact-form" autocomplete="off">
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                class="input-field"
+                required
             >
-                <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                <span>delete all</span>
-            </button>
-        </div>
-    </form>
 
-        </section>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Phone number"
+                class="input-field"
+                required
+            >
 
-        <section class="contact-section" id="contact-section">
-            <h2>My friends</h2>
-            <ul id="contact-list" aria-live="polite">
+            <div id="button-wrapper">
+                <button type="submit" class="create-contact-btn">
+                    <i class="fas fa-plus"></i>
+                    <span>create</span>
+                </button>
 
-            </ul>
-            <!-- Kommer behöva lägga till denna som variabel i JS för att skapa innerHtml -->
-            <div id = "error-message"></div> 
-        </section>
+                <div id="delete-all-slot">
+                    <button
+                        type="button"
+                        id="delete-all-contacts-btn"
+                        class="delete-all-contacts-btn"
+                    >
+                        <i class="fa-solid fa-trash"></i>
+                        <span>delete all</span>
+                    </button>
 
+                    <div id="delete-confirm-group" hidden>
+                        <button
+                            type="button"
+                            id="confirm-delete-all"
+                            class="icon-btn"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancel-delete-all"
+                            class="icon-btn"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+
+            </section>
+    </div>
     </main>
 
     <script src="js/script.js"></script>
