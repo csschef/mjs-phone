@@ -6,6 +6,7 @@ const heeHeeSound = document.getElementById('MJ-hee-hee'); // Ljud är kul
 const shamonaSound = document.getElementById('MJ-shamona');
 const yowSound = document.getElementById('MJ-yow');
 const beatitSound = document.getElementById('MJ-beat-it');
+const whyNotSound = document.getElementById('MJ-why-not');
 
 
 
@@ -55,11 +56,14 @@ function addContact(name, phone) {
 
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
-    editBtn.textContent = 'Ändra';
+    editBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>';
+    editBtn.classList.add('icon-btn');
 
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
-    deleteBtn.textContent = 'Ta bort';
+    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    deleteBtn.classList.add('icon-btn');
+    deleteBtn.setAttribute('aria-label', 'Ta bort kontakt');
 
 
 
@@ -71,10 +75,10 @@ function addContact(name, phone) {
         if (isDisabled) {
             nameInput.disabled = false;
             phoneInput.disabled = false;
-            editBtn.textContent = 'Spara';
+            editBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
 
-            yowSound.currentTime = 0;
-            yowSound.play();
+            whyNotSound.currentTime = 0;
+            whyNotSound.play();
         }
         // Om fälten är redigerbara → spara
         else {
@@ -91,7 +95,7 @@ function addContact(name, phone) {
 
             nameInput.disabled = true;
             phoneInput.disabled = true;
-            editBtn.textContent = 'Ändra';
+            editBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>';
 
             shamonaSound.currentTime = 0;
             shamonaSound.play();
