@@ -2,7 +2,7 @@
 
 :root {
     --bg-app: #0f172a;
-    --bg-phone: #020617;
+    --bg-phone: #000105;
     --bg-surface: rgba(255, 255, 255, 0.02);
     --bg-input: rgba(255, 255, 255, 0.12);
 
@@ -54,6 +54,8 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
+    padding: 6px;
+    border-radius: var(--radius-lg);
     pointer-events: none;
     object-fit: cover;
     object-position: bottom;
