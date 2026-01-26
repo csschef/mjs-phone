@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-
-/* RESET BASE */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --color-primary: #4F46E5;
-    --color-secondary: #6B7280;
-    --color-background: #F9FAFB;
-    --color-text: #111827;
-    --font-family-base: 'Silkscreen', sans-serif;
+    --bg-app: #0f172a;
+    --bg-phone: #020617;
+    --bg-surface: rgba(255, 255, 255, 0.08);
+    --bg-input: rgba(255, 255, 255, 0.12);
+
+    --color-primary: #6366f1;
+    --color-danger: #ef4444;
+    --color-text: #e5e7eb;
+    --color-muted: #9ca3af;
+
+    --radius-xl: 32px;
+    --radius-lg: 28px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+    --shadow-inset: inset 0 0 0 1px rgba(255,255,255,0.08);
+
+    --font-base: 'Inter', system-ui, sans-serif;
 }
 
 *,
@@ -16,188 +28,285 @@
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 body {
-    background: #2b2b2b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
     min-height: 100vh;
-    font-family: var(--font-family-base)
-}
-
-input,
-button,
-textarea,
-select {
-    font-family: var(--font-family-base);
-}
-
-/* Telefonen */
-main {
-    width: 500px;
-    height: 900px;
-    background: #111;
-    border-radius: 28px;
-    padding: 20px;
-    box-shadow:
-        inset 0 0 0 4px #333,
-        0 20px 40px rgba(0,0,0,0.6);
     display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #1e293b, var(--bg-app));
+    font-family: var(--font-base);
+    color: var(--color-text);
 }
 
-main > section {
-    position: relative;
-    z-index: 1;
-}
+/* Reflection overlay */
 
 #reflection {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999;
     pointer-events: none;
     object-fit: cover;
     object-position: bottom;
+    opacity: .06;
+    z-index: 10;
 }
 
-/* Själva Skärmen */
+/* Se till att UI hamnar ovanpå reflection */
+main > section {
+    position: relative;
+    z-index: 20;
+}
+
+main {
+    width: 390px;
+    height: 820px;
+    background: linear-gradient(180deg, #020617, #020617);
+    border-radius: var(--radius-xl);
+    padding: 6px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-hole {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 30;
+    box-shadow:
+        inset 0 0 2px rgba(255,255,255,0.2),
+        0 0 4px rgba(0,0,0,0.8);
+}
+
+.glass-layer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 12px;
+    background: var(--bg-surface);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    box-shadow: var(--shadow-inset);
+    z-index: 11;
+}
+
+.create-contact {
+    flex-shrink: 0;
+}
+
 .create-contact,
 .contact-section {
-    background: #838f6d;
-    border-radius: 6px;
-    padding: 10px;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
 }
 
+
 h1, h2 {
+    margin: 0 0 10px;
     font-size: 14px;
+    font-weight: 600;
     text-align: center;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--color-text);
 }
 
 #create-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 }
 
 .input-field {
-    background: #e5ead7;
-    border: 1px solid #444;
-    padding: 6px;
-    font-size: 13px;
-    width: 100%;
-    min-width: 0;
+    background: var(--bg-input);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.input-field::placeholder {
+    color: var(--color-muted);
+}
+
+.input-field:focus {
+    outline: 2px solid var(--color-primary);
 }
 
 #button-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 6px;
+    gap: 8px;
 }
 
-.create-contact-btn,
-.delete-all-contacts-btn {
-    margin-top: 6px;
-    background: #444;
-    color: #fff;
+#button-wrapper button {
+    width: 100%;
+}
+
+button {
     border: none;
-    padding: 6px;
-    font-size: 12px;
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.create-contact-btn {
+    background: var(--color-primary);
+    color: white;
 }
 
 .create-contact-btn:active {
-    background: #222;
+    transform: scale(0.97);
 }
 
+.delete-all-contacts-btn {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fecaca;
+}
+
+#delete-all-slot {
+    width: 100%;
+}
+
+#delete-confirm-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+#confirm-delete-all {
+    color: #86efac;
+}
+
+#cancel-delete-all {
+    color: #fca5a5;
+}
+
+
 .contact-section {
-    margin-top: 12px;
     flex: 1;
     overflow-y: auto;
+    margin-top: 20px;
 }
 
 #contact-list {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    width: 100%;
+    gap: 8px;
 }
 
 #contact-list li {
-    background: #e5ead7;
-    border: 1px solid #444;
-    padding: 4px;
-    font-size: 12px;
-    width: 100%;
-    overflow: hidden;
+    background: var(--bg-input);
+    border-radius: var(--radius-sm);
+    padding: 8px;
 }
 
 #contact-list li form {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto auto;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    align-items: center;
+}
+
+
+#contact-list input[name="name"] {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+#contact-list input[name="phone"] {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+.contact-actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
     gap: 6px;
     align-items: center;
-    width: 100%;
 }
+
 
 #contact-list input {
-    background: #f0f4e8;
-    border: 1px solid #444;
-    font-size: 11px;
-    padding: 4px;
-    width: 100%;
-    min-width: 0;
-}
-
-#contact-list button {
-    background: #555;
-    color: #fff;
+    background: transparent;
     border: none;
-    font-size: 11px;
-    padding: 4px 6px;
-    cursor: pointer;
-    white-space: nowrap;
+    padding: 0;
+    font-size: 14px;
+    color: var(--color-muted);
+    pointer-events: none;
 }
 
-#contact-list button:active {
-    background: #222;
+#contact-list li.editing input {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 6px 8px;
+    pointer-events: auto;
 }
+
+#contact-list li.editing input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .icon-btn {
     background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    font-size: 14px;
-    padding: 2px;
+    color: var(--color-muted);
+    font-size: 16px;
+    padding: 6px;
+}
+
+.icon-btn:hover {
+    color: var(--color-text);
 }
 
 .icon-btn:active {
-    color: #000;
+    transform: scale(0.9);
 }
 
+.icon-btn[aria-label*="Ta bort"] {
+    color: #fca5a5;
+}
 
 .warning {
-    margin-top: 4px;
-    font-size: 11px;
-    color: #7a0000;
+    font-size: 12px;
+    color: #fca5a5;
     text-align: center;
 }
