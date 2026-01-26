@@ -47,11 +47,13 @@ function addContact(name, phone) {
 
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
+    nameInput.name = 'name';
     nameInput.value = name;
     nameInput.disabled = true;
 
     const phoneInput = document.createElement('input');
     phoneInput.type = 'text';
+    phoneInput.name = 'phone';
     phoneInput.value = phone;
     phoneInput.disabled = true;
 
@@ -66,7 +68,10 @@ function addContact(name, phone) {
     deleteBtn.classList.add('icon-btn');
     deleteBtn.setAttribute('aria-label', 'Ta bort kontakt');
 
-    // Event listener för Ändra/Spara-knappen
+    const actions = document.createElement('div');
+    actions.classList.add('contact-actions');
+
+     // Event listener för Ändra/Spara-knappen
     editBtn.addEventListener('click', () => {
         const isDisabled = nameInput.disabled;
 
@@ -74,7 +79,13 @@ function addContact(name, phone) {
         if (isDisabled) {
             nameInput.disabled = false;
             phoneInput.disabled = false;
+
+            nameInput.style.pointerEvents = 'auto';
+            phoneInput.style.pointerEvents = 'auto';
+
+            li.classList.add('editing');
             editBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            nameInput.focus();
 
             whyNotSound.currentTime = 0;
             whyNotSound.play();
@@ -94,6 +105,11 @@ function addContact(name, phone) {
 
             nameInput.disabled = true;
             phoneInput.disabled = true;
+
+            nameInput.style.pointerEvents = 'none';
+            phoneInput.style.pointerEvents = 'none';
+
+            li.classList.remove('editing');
             editBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>';
 
             shamonaSound.currentTime = 0;
@@ -101,31 +117,57 @@ function addContact(name, phone) {
         }
     });
 
-    deleteBtn.addEventListener('click', () => {
-    li.remove();
 
-    beatitSound.currentTime = 0;
-    beatitSound.play();
+    deleteBtn.addEventListener('click', () => {
+        li.remove();
+
+        beatitSound.currentTime = 0;
+        beatitSound.play();
     });
 
+    actions.appendChild(editBtn);
+    actions.appendChild(deleteBtn);
 
     // Bygger upp raden
     form.appendChild(nameInput);
     form.appendChild(phoneInput);
-    form.appendChild(editBtn);
-    form.appendChild(deleteBtn);
+    form.appendChild(actions);
 
     li.appendChild(form);
     contactList.appendChild(li);
 }
 
  // Event listener för Ta bort-knappen
+const confirmDeleteAllBtn = document.getElementById('confirm-delete-all');
+const cancelDeleteAllBtn = document.getElementById('cancel-delete-all');
+const deleteConfirmGroup = document.getElementById('delete-confirm-group');
+
 deleteAllBtn.addEventListener('click', () => {
     if (!contactList.children.length) return;
 
-    if (!confirm('Delete all contacts?')) return;
+    deleteAllBtn.hidden = true;
+    deleteConfirmGroup.hidden = false;
 
+    whyNotSound.currentTime = 0;
+    whyNotSound.play();
+});
+
+confirmDeleteAllBtn.addEventListener('click', () => {
     contactList.innerHTML = '';
+
+    deleteConfirmGroup.hidden = true;
+    deleteAllBtn.hidden = false;
+
     beatitSound.currentTime = 0;
     beatitSound.play();
 });
+
+cancelDeleteAllBtn.addEventListener('click', () => {
+    deleteConfirmGroup.hidden = true;
+    deleteAllBtn.hidden = false;
+
+    shamonaSound.currentTime = 0;
+    shamonaSound.play();
+});
+
+
