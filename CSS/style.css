@@ -3,7 +3,7 @@
 :root {
     --bg-app: #0f172a;
     --bg-phone: #020617;
-    --bg-surface: rgba(255, 255, 255, 0.08);
+    --bg-surface: rgba(255, 255, 255, 0.02);
     --bg-input: rgba(255, 255, 255, 0.12);
 
     --color-primary: #6366f1;
@@ -103,7 +103,7 @@ main {
     overflow: hidden;
     gap: 12px;
     background: var(--bg-surface);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: var(--radius-lg);
     padding: 14px;
