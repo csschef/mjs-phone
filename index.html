@@ -2,15 +2,67 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Svenska Webbplats</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MJs phone contacts</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
 </head>
 <body>
+<audio id="MJ-hee-hee" src="Assets/sound/hee-hee.mp3" type="audio/mp3"></audio>
+<audio id="MJ-shamona" src="Assets/sound/shamona.mp3" type="audio/mp3"></audio>
+<audio id="MJ-yow" src="Assets/sound/yow.mp3"></audio>
+<audio id="MJ-beat-it" src="Assets/sound/beat-it.mp3"></audio>
 
+    <main>
+        <img
+    id="reflection"
+    src="Assets/img/reflection.png"
+    alt=""
+    aria-hidden="true">
 
+        <section class="create-contact" id="create-contact-section">
+            <h1>Lägg till kontakt</h1>
 
-    <script src="script.js"></script>
+            <form id="create-contact-form" autocomplete="off">
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Namn"
+                    class="input-field"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Telefonnummer"
+                    class="input-field"
+                    required
+                >
+
+                <button type="submit" class="create-contact-btn">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Skapa ny kontakt</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="contact-section" id="contact-section">
+            <h2>Mina kontakter</h2>
+            <ul id="contact-list" aria-live="polite">
+
+            </ul>
+            <!-- Kommer behöva lägga till denna som variabel i JS för att skapa innerHtml -->
+            <div id = "error-message"></div> 
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
