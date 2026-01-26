@@ -25,32 +25,43 @@
     aria-hidden="true">
 
         <section class="create-contact" id="create-contact-section">
-            <h1>Add contact</h1>
+            <h1>Add friends</h1>
 
-            <form id="create-contact-form" autocomplete="off">
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    class="input-field"
-                    required
-                >
+    <form id="create-contact-form" autocomplete="off">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Name"
+            class="input-field"
+            required
+        >
 
-                <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    placeholder="Phone number"
-                    class="input-field"
-                    required
-                >
+        <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="Phone number"
+            class="input-field"
+            required
+        >
 
-                <button type="submit" class="create-contact-btn">
-                    <i class="fas fa-plus" aria-hidden="true"></i>
-                    <span>create</span>
-                </button>
-            </form>
+        <div id="button-wrapper">
+            <button type="submit" class="create-contact-btn">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                <span>add</span>
+            </button>
+            <button
+                type="button"
+                id="delete-all-contacts-btn"
+                class="delete-all-contacts-btn"
+            >
+                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                <span>delete all</span>
+            </button>
+        </div>
+    </form>
+
         </section>
 
         <section class="contact-section" id="contact-section">
