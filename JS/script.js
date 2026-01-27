@@ -49,6 +49,7 @@ function addContact(name, phone) {
     nameInput.type = 'text';
     nameInput.name = 'name';
     nameInput.value = name;
+    nameInput.classList.add('contact-name');
     nameInput.disabled = true;
 
     const phoneInput = document.createElement('input');
