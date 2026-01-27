@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --bg-app: #0f172a;
     --bg-phone: #000105;
     --bg-surface: rgba(255, 255, 255, 0.02);
     --bg-input: rgba(41, 44, 57,.8);
@@ -13,7 +12,7 @@
     --color-muted: #9ca3af;
     --color-input-focus: rgba(99, 102, 241, 0.6);
     --color-warning: #fca5a5;
-    --color-base-white: #ffffff;
+    --color-base-white: #ffffff; 
 
     --phone-radius: 32px;
     --phone-frame: 8px; /* tjocklek på svart kant */
@@ -105,7 +104,7 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
-    padding: 6px;
+    padding: 14px;
     border-radius: var(--radius-lg);
     pointer-events: none;
     object-fit: cover;
@@ -123,6 +122,7 @@ main > section {
 main {
     width: 390px;
     height: 820px;
+    padding: 0;
     background: var(--bg-phone);
     border-radius: var(--phone-radius);
     padding: var(--phone-frame);
@@ -134,7 +134,7 @@ main {
     flex-direction: column;
     gap: 0px;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */ 
 }
 
 .camera-hole {
@@ -156,23 +156,23 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflorw: hidden;
+    overflow: hidden;
     gap: 0;
     background: var(--bg-surface);
     backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: calc(var(--phone-radius) - var(--phone-frame));
+    -webkit-backdrop-filter: blur(6px); 
+    border-radius: calc(var(--phone-radius) - 12px);   
     padding:  10px 14px 14px 14px;
     box-shadow: var(--shadow-inset);
-    z-index: 11;
+    z-index: 11; 
 }
 
 .create-contact {
-    width: calc(100% + 28px);
-    margin-left: -14px;
-    margin-right: -14px;
-    margin-bottom: -16px;
-    padding: 14px 14px 16px;
+    /* width: calc(100% + 28px);  */
+    /* margin-left: -14px;
+    margin-right: -14px; */
+    /* margin-bottom: -16px;  */
+    padding: 14px 14px 16px; 
     background: linear-gradient(
         to top,
         rgba(30, 32, 48, 0.55),
@@ -180,7 +180,7 @@ main {
     );
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 
-    border-radius: 12px 12px 22px 22px;  
+    border-radius: 12px;  
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.04),
         inset 0 -1px 0 rgba(0,0,0,0.4);
@@ -188,16 +188,31 @@ main {
 
 
 .contact-section {
+    flex: 1;
+    margin-top: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     background: transparent;
     border-radius: 0;
     padding: 0;
     box-shadow: none;
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        black 90%,
+        transparent 100%
+    ); 
 }
 
 .contact-section h2 {
-    margin: 0;
     padding: 10px 14px;
     border-radius: 12px;
+    margin-top: 20px;
     background: linear-gradient(
         to bottom,
         rgba(30, 32, 48, 0.55),
@@ -312,15 +327,6 @@ button {
     color: var(--color-warning);
 }
 
-
-.contact-section {
-    flex: 1;
-    overflow-y: auto;
-    margin-top: 20px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
 .contact-section::-webkit-scrollbar {
     display: none;
 }
@@ -431,27 +437,24 @@ li.editing .contact-actions .delete-btn {
 
 .status-bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
-    width: calc(100% + 32px); 
-    margin-left: -16px;
-    margin-right: -16px; 
-    margin-top: -14px;
+    width: calc(100% + 26px); 
+    margin-left: -13px;
+    margin-right: -13px;
+    margin-top: -9px;
     padding: 0px 14px;
     background: rgba(0, 0, 0, 0.99);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     font-size: 12px;
-    color: var(--color-base-white);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    border-radius: 24px 24px 2px 2px;  
+    color: var(--color-base-white); 
+    border-radius: 13px 13px 0 0;
     top: 0;
     z-index: 40;
 }
 
-
-
-.status-right {
+.status-right { 
     display: flex;
     align-items: center;
     gap: 6px;
