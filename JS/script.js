@@ -10,8 +10,75 @@ const beatitSound = document.getElementById('MJ-beat-it');
 const whyNotSound = document.getElementById('MJ-why-not');
 const rejectedSound = document.getElementById('MJ-rejected');
 
+// Läser in sparade kontakter från localstorage (eller startar med tom lista) Alla funktioner jobbar mot detta objekt
+let contacts = localStorage.getItem('contacts')
+    ? JSON.parse(localStorage.getItem('contacts'))
+    : [];
+
+// Anropas vid sidladdning, create, update eller delete, den tömmer ul listan, loopar igenom contacts och anropar addContact.
+displayContacts();
+
 contactName.addEventListener('focus', clearError);
 contactPhone.addEventListener('focus', clearError);
+
+
+// Sparar hela contacts-arrayen till localStorage
+// Används av:
+// createContact
+// updateContact
+// deleteContact
+// deleteAllContacts
+function saveContacts() {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+}
+
+// Anropas ab submit-event
+// Skapar ett nytt kontaktobjekt (med unikt id) och sparar det genom att anropa saveContacts
+function createContact(name, phone) {
+    const newContact = {
+        id: crypto.randomUUID(),
+        name: name.trim(), // Trim tar bort mellanslag före och efter strängen
+        phone: phone.trim()
+    };
+
+    contacts.push(newContact);
+    saveContacts();
+
+    // Returnera kontakten så vi kan rendera just den
+    return newContact;
+}
+
+// Anropas av editBtn click event.
+// Letar efter id, uppdaterar datan och sparar.
+function updateContact(id, newName, newPhone) {
+    const contact = contacts.find(contact => contact.id === id);
+    if (!contact) return false;
+
+    contact.name = newName.trim();
+    contact.phone = newPhone.trim();
+
+    saveContacts();
+    return true;
+}
+
+// Anropas av deleteBtn click event
+// Filtrerar bort kontakten - viktigt, den raderar inte, den filtrerar bort.
+// Sparar
+function deleteContact(id) {
+    contacts = contacts.filter(contact => contact.id !== id);
+    saveContacts();
+}
+
+// Anropas av confirmDeleteAllBtn
+// Den tömmer contacts arrayen och sparar.
+function deleteAllContacts() {
+    contacts = [];
+    saveContacts();
+}
+
+
+
+
 
 
 // Event listener för formuläret som används för att skapa en ny kontakt
@@ -32,8 +99,9 @@ contactForm.addEventListener('submit', (event) => {
 
     clearError();
 
-    // Anropar funktionen addContact med namn och telefonnummer som argument
-    addContact(contactName.value.trim(), contactPhone.value.trim());
+    // Skapar kontakt via createContact funktionen (som även sparar i localStorage och uppdaterar UI)
+    const newContact = createContact(contactName.value, contactPhone.value);
+    addContact(newContact);
 
     heeHeeSound.currentTime = 0;
     heeHeeSound.play();
@@ -46,10 +114,13 @@ contactForm.addEventListener('submit', (event) => {
 
 
 
-// Funktion för att skapa ny kontakt
-// Kontakten skapas som en rad (li) med inputs och knappar inline
-function addContact(name, phone) {
+// Anropas av displayContacts
+// Skapar html och kopplar knappar.
+// Ritar upp EN kontakt i listan. Kontaktens data kommer från contacts-arrayen.
+function addContact(contact) {
+    const { id, name, phone } = contact;
     const li = document.createElement('li');
+    li.dataset.id = id;
     const form = document.createElement('form');
 
     const nameInput = document.createElement('input');
@@ -65,6 +136,7 @@ function addContact(name, phone) {
     phoneInput.value = phone;
     phoneInput.disabled = true;
 
+    // Rensar ev. felmeddelande när användaren börjar redigera en skapad kontakt
     nameInput.addEventListener('focus', clearError); // Behöver ligga i detta scope då nameInput inte finns fören det körs
     phoneInput.addEventListener('focus', clearError); // Behöver ligga i detta scope då phoneInput inte finns fören det körs
 
@@ -118,6 +190,7 @@ function addContact(name, phone) {
 
             nameInput.value = nameInput.value.trim();
             phoneInput.value = phoneInput.value.trim();
+            updateContact(id, nameInput.value, phoneInput.value);
 
             nameInput.disabled = true;
             phoneInput.disabled = true;
@@ -135,7 +208,8 @@ function addContact(name, phone) {
 
 
     deleteBtn.addEventListener('click', () => {
-        li.remove();
+        deleteContact(id);   // uppdaterar array + localStorage
+        li.remove();         // tar bort från UI
 
         beatitSound.currentTime = 0;
         beatitSound.play();
@@ -169,6 +243,7 @@ deleteAllBtn.addEventListener('click', () => {
 });
 
 confirmDeleteAllBtn.addEventListener('click', () => {
+    deleteAllContacts();
     contactList.innerHTML = '';
 
     deleteConfirmGroup.hidden = true;
@@ -197,6 +272,17 @@ function clearError() {
     const errorBox = document.getElementById('error-message');
     errorBox.innerHTML = '';
 }
+
+// Funktion för local storage som tömmer listan och ritar om den från arrayen
+
+function displayContacts() {
+    contactList.innerHTML = '';
+    for (let contact of contacts) {
+        addContact(contact);
+    }
+}
+
+displayContacts();
 
 
 
