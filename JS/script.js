@@ -285,4 +285,22 @@ function displayContacts() {
 displayContacts();
 
 
+//Bonus
+function updateTime() {
+    const timeEl = document.querySelector('.time');
+    if (!timeEl) return;
 
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+
+    const period = hours >= 12 ? 'pm' : 'am';
+    const displayHour = hours % 12 || 12;
+
+    timeEl.textContent = `${displayHour}:${minutes} ${period}`;
+}
+
+updateTime();
+
+setInterval(updateTime, 60 * 1000);
