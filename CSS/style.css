@@ -4,14 +4,15 @@
     --bg-app: #0f172a;
     --bg-phone: #000105;
     --bg-surface: rgba(255, 255, 255, 0.02);
-    --bg-input: #292C39;
+    --bg-input: rgba(41, 44, 57,.8);
 
     --color-primary: #6366f1;
-    --color-danger: #ef4444;
+    --color-edit: #86efac;
     --color-delete: #af343a;
     --color-text: #e5e7eb;
     --color-muted: #9ca3af;
     --color-input-focus: rgba(99, 102, 241, 0.6);
+    --color-warning: #fca5a5;
 
     --radius-xl: 32px;
     --radius-lg: 28px;
@@ -105,7 +106,7 @@ main {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    gap: 12px;
+    gap: 0;
     background: var(--bg-surface);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(6px);
@@ -116,10 +117,16 @@ main {
 }
 
 .create-contact {
-    flex-shrink: 0;
+    width: calc(100% + 28px);
+    margin-left: -14px;
+    margin-right: -14px;
+    margin-bottom: -14px;
+    padding: 12px 14px;
+    background: rgba(59, 59, 59, 0.3);
+    border-top: 1px solid rgba(255,255,255,.07);
+    border-radius: 0;
 }
 
-.create-contact,
 .contact-section {
     background: transparent;
     border-radius: 0;
@@ -140,7 +147,7 @@ h1, h2 {
 #create-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .input-field {
@@ -148,7 +155,7 @@ h1, h2 {
     border: none;
     border-radius: var(--radius-sm);
     padding: 10px 12px;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-text);
 }
 
@@ -181,6 +188,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 6px;
+    min-height: 42px
 }
 
 .create-contact-btn {
@@ -205,6 +213,14 @@ button {
     display: flex;
     gap: 12px;
     justify-content: center;
+    align-items: center;
+    background-color: var(--bg-input);
+    border-radius: var(--radius-sm);
+    height: 42px;
+    padding: 0 10px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
 }
 
 #confirm-delete-all {
@@ -212,7 +228,7 @@ button {
 }
 
 #cancel-delete-all {
-    color: #fca5a5;
+    color: var(--color-warning);
 }
 
 
@@ -220,6 +236,12 @@ button {
     flex: 1;
     overflow-y: auto;
     margin-top: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contact-section::-webkit-scrollbar {
+    display: none;
 }
 
 #contact-list {
@@ -241,7 +263,8 @@ button {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
-    gap: 6px 10px;
+    row-gap: 4px;
+    column-gap: 10px;
     align-items: center;
 }
 
@@ -265,6 +288,29 @@ button {
     flex-direction: column;
     gap: 6px;
     align-items: center;
+}
+
+.icon-btn {
+    background: none;
+    font-size: 16px;
+    padding: 6px;
+}
+
+.edit-btn {
+    color: var(--color-muted);
+}
+
+.edit-btn:hover {
+    color: var(--color-edit);
+}
+
+.delete-btn {
+    display: none;
+    color: var(--color-warning);
+}
+
+li.editing .contact-actions .delete-btn {
+    display: inline-flex;
 }
 
 
@@ -296,27 +342,8 @@ button {
     font-weight: 500;
 }
 
-.icon-btn {
-    background: none;
-    color: var(--color-muted);
-    font-size: 16px;
-    padding: 6px;
-}
-
-.icon-btn:hover {
-    color: var(--color-text);
-}
-
-.icon-btn:active {
-    transform: scale(0.9);
-}
-
-.icon-btn[aria-label*="Ta bort"] {
-    color: #fca5a5;
-}
-
 .warning {
     font-size: 12px;
-    color: #fca5a5;
+    color: var(--color-warning);
     text-align: center;
 }

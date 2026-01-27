@@ -10,7 +10,8 @@ const beatitSound = document.getElementById('MJ-beat-it');
 const whyNotSound = document.getElementById('MJ-why-not');
 const rejectedSound = document.getElementById('MJ-rejected');
 
-
+contactName.addEventListener('focus', clearError);
+contactPhone.addEventListener('focus', clearError);
 
 
 // Event listener för formuläret som används för att skapa en ny kontakt
@@ -23,7 +24,7 @@ contactForm.addEventListener('submit', (event) => {
         contactName.value.trim() === '' ||
         contactPhone.value.trim() === ''
     ) {
-        showError("You can't save an empty contact...<br>get some friends first");
+        showError("You can't save an empty contact...<br>get some friends first!");
         rejectedSound.currentTime = 0;
         rejectedSound.play();
         return;
@@ -64,15 +65,18 @@ function addContact(name, phone) {
     phoneInput.value = phone;
     phoneInput.disabled = true;
 
+    nameInput.addEventListener('focus', clearError); // Behöver ligga i detta scope då nameInput inte finns fören det körs
+    phoneInput.addEventListener('focus', clearError); // Behöver ligga i detta scope då phoneInput inte finns fören det körs
+
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
     editBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>';
-    editBtn.classList.add('icon-btn');
+    editBtn.classList.add('icon-btn', 'edit-btn');
 
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    deleteBtn.classList.add('icon-btn');
+    deleteBtn.classList.add('icon-btn', 'delete-btn');
     deleteBtn.setAttribute('aria-label', 'Ta bort kontakt');
 
     const actions = document.createElement('div');
@@ -193,4 +197,6 @@ function clearError() {
     const errorBox = document.getElementById('error-message');
     errorBox.innerHTML = '';
 }
+
+
 
