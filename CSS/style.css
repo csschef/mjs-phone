@@ -4,12 +4,14 @@
     --bg-app: #0f172a;
     --bg-phone: #000105;
     --bg-surface: rgba(255, 255, 255, 0.02);
-    --bg-input: rgba(255, 255, 255, 0.12);
+    --bg-input: #292C39;
 
     --color-primary: #6366f1;
     --color-danger: #ef4444;
+    --color-delete: #af343a;
     --color-text: #e5e7eb;
     --color-muted: #9ca3af;
+    --color-input-focus: rgba(99, 102, 241, 0.6);
 
     --radius-xl: 32px;
     --radius-lg: 28px;
@@ -191,7 +193,7 @@ button {
 }
 
 .delete-all-contacts-btn {
-    background: rgba(239, 68, 68, 0.15);
+    background: var(--color-delete);
     color: #fecaca;
 }
 
@@ -226,7 +228,7 @@ button {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap:8px;
 }
 
 #contact-list li {
@@ -270,14 +272,13 @@ button {
     background: transparent;
     border: none;
     padding: 0;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-muted);
     pointer-events: none;
 }
 
 #contact-list li.editing input {
     color: var(--color-text);
-    background: rgba(255, 255, 255, 0.12);
     border-radius: 8px;
     padding: 6px 8px;
     pointer-events: auto;
@@ -285,7 +286,14 @@ button {
 
 #contact-list li.editing input:focus {
     outline: none;
-    box-shadow: none;
+    box-shadow:
+        0 0 0 2px var(--color-primary),
+        0 0 12px var(--color-input-focus);
+}
+
+#contact-list input.contact-name {
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .icon-btn {
