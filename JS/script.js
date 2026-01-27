@@ -131,7 +131,7 @@ function addContact(contact) {
     nameInput.disabled = true;
 
     const phoneInput = document.createElement('input');
-    phoneInput.type = 'text';
+    phoneInput.type = 'tel';
     phoneInput.name = 'phone';
     phoneInput.value = phone;
     phoneInput.disabled = true;
