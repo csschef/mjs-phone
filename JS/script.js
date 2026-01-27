@@ -8,6 +8,7 @@ const shamonaSound = document.getElementById('MJ-shamona');
 const yowSound = document.getElementById('MJ-yow');
 const beatitSound = document.getElementById('MJ-beat-it');
 const whyNotSound = document.getElementById('MJ-why-not');
+const rejectedSound = document.getElementById('MJ-rejected');
 
 
 
@@ -17,13 +18,18 @@ contactForm.addEventListener('submit', (event) => {
     // Förhindrar att sidan laddas om
     event.preventDefault();
 
-    // Validering innan kontakt skapas
+    // Validering innan kontakt skapas och visa error meddelande om det finns tomma fält
     if (
         contactName.value.trim() === '' ||
         contactPhone.value.trim() === ''
     ) {
+        showError("You can't save an empty contact...<br>get some friends first");
+        rejectedSound.currentTime = 0;
+        rejectedSound.play();
         return;
     }
+
+    clearError();
 
     // Anropar funktionen addContact med namn och telefonnummer som argument
     addContact(contactName.value.trim(), contactPhone.value.trim());
@@ -98,8 +104,13 @@ function addContact(name, phone) {
                 nameInput.value.trim() === '' ||
                 phoneInput.value.trim() === ''
             ) {
+                showError("You can't save an empty contact...");
+                rejectedSound.currentTime = 0;
+                rejectedSound.play();
                 return;
             }
+
+            clearError();
 
             nameInput.value = nameInput.value.trim();
             phoneInput.value = phoneInput.value.trim();
@@ -171,4 +182,15 @@ cancelDeleteAllBtn.addEventListener('click', () => {
     shamonaSound.play();
 });
 
+//Error hantering vid tomma fält, OBS får ej ha required hårdkodat i html. Då sköter webläsaren valideringen och inte min kod.
+
+function showError(message) {
+    const errorBox = document.getElementById('error-message');
+    errorBox.innerHTML = `<p class="warning">${message}</p>`;
+}
+
+function clearError() {
+    const errorBox = document.getElementById('error-message');
+    errorBox.innerHTML = '';
+}
 
