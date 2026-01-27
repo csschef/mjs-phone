@@ -109,8 +109,8 @@ body {
     pointer-events: none;
     object-fit: cover;
     object-position: bottom;
-    opacity: .12;
-    z-index: 10;
+    opacity: .06;
+    z-index: 60;
 }
 
 /* Se till att UI hamnar ovanpå reflection */
