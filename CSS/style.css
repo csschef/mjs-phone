@@ -15,9 +15,11 @@
     --color-warning: #fca5a5;
     --color-base-white: #ffffff;
 
+    --phone-radius: 32px;
+    --phone-frame: 8px; /* tjocklek på svart kant */
     --radius-xl: 32px;
     --radius-lg: 28px;
-    --radius-md: 14px;
+    --radius-md: 22px;
     --radius-sm: 10px;
     --shadow-inset: inset 0 0 0 1px rgba(255,255,255,0.08);
     --font-base: 'Inter', system-ui, sans-serif;
@@ -37,6 +39,52 @@ html {
     scroll-behavior: smooth;
 }
 
+html::after {
+    content: "";
+    position: fixed;
+    inset: -20%; /* större än viewport så kan den röra sig */
+    pointer-events: none;
+    z-index: 9999;
+
+    background:
+        radial-gradient(
+            60% 40% at 30% 20%,
+            rgba(255, 0, 0, 0.45), /* rosa */
+            transparent 70%
+        ),
+        radial-gradient(
+            50% 45% at 70% 30%,
+            rgba(90, 80, 255, 0.5), /* blå/lila */
+            transparent 70%
+        ),
+        radial-gradient(
+            55% 50% at 50% 70%,
+            rgba(0, 0, 0, 0.8), /* röd */
+            transparent 70%
+        );
+
+    mix-blend-mode: screen;
+    filter: blur(14px);
+
+    animation: ambientShadowMove 10s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+@keyframes ambientShadowMove {
+    0% {
+        transform: translate(-10%, -10%);
+        opacity: 0.35;
+    }
+    50% {
+        transform: translate(8%, 6%);
+        opacity: 0.45;
+    }
+    100% {
+        transform: translate(-6%, 12%);
+        opacity: 0.3;
+    }
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -46,7 +94,9 @@ body {
     background: url("../Assets/img/bg.jpg") center / cover no-repeat;
     font-family: var(--font-base);
     color: var(--color-text);
+    position: relative;
 }
+
 
 /* Reflection overlay */
 
@@ -74,8 +124,8 @@ main {
     width: 390px;
     height: 820px;
     background: var(--bg-phone);
-    border-radius: var(--radius-xl);
-    padding: 6px;
+    border-radius: var(--phone-radius);
+    padding: var(--phone-frame);
     box-shadow:
         0 28px 60px rgba(0, 0, 0, 0.55),
         0 10px 25px rgba(120, 90, 255, 0.12),
@@ -89,8 +139,8 @@ main {
 
 .camera-hole {
     position: absolute;
-    top: 20px;
-    left: 50%;
+    top: 14px; 
+    left: 50%; 
     transform: translateX(-50%);
     width: 18px;
     height: 18px;
@@ -106,13 +156,13 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflorw: hidden;
     gap: 0;
     background: var(--bg-surface);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(6px);
-    border-radius: var(--radius-lg);
-    padding: 0 14px 14px 14px;
+    border-radius: calc(var(--phone-radius) - var(--phone-frame));
+    padding:  10px 14px 14px 14px;
     box-shadow: var(--shadow-inset);
     z-index: 11;
 }
@@ -121,12 +171,21 @@ main {
     width: calc(100% + 28px);
     margin-left: -14px;
     margin-right: -14px;
-    margin-bottom: -14px;
-    padding: 12px 14px;
-    background: rgba(59, 59, 59, 0.3);
-    border-top: 1px solid rgba(255,255,255,.07);
-    border-radius: 0;
+    margin-bottom: -16px;
+    padding: 14px 14px 16px;
+    background: linear-gradient(
+        to top,
+        rgba(30, 32, 48, 0.55),
+        rgba(18, 20, 32, 0.75)
+    );
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 12px 12px 22px 22px;  
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        inset 0 -1px 0 rgba(0,0,0,0.4);
 }
+
 
 .contact-section {
     background: transparent;
@@ -135,6 +194,27 @@ main {
     box-shadow: none;
 }
 
+.contact-section h2 {
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: linear-gradient(
+        to bottom,
+        rgba(30, 32, 48, 0.55),
+        rgba(18, 20, 32, 0.75)
+    );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-align: center;
+    box-shadow:
+        inset 0 -1px 0 rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+
+}
 
 h1, h2 {
     margin: 0 0 10px;
@@ -353,14 +433,23 @@ li.editing .contact-actions .delete-btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    width: calc(100% + 32px); 
+    margin-left: -16px;
+    margin-right: -16px; 
+    margin-top: -14px;
     padding: 0px 14px;
+    background: rgba(0, 0, 0, 0.99);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     font-size: 12px;
-    color: var(--color-muted);
-
-    position: relative;
-    z-index: 30;
+    color: var(--color-base-white);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px 24px 2px 2px;  
+    top: 0;
+    z-index: 40;
 }
+
+
 
 .status-right {
     display: flex;
