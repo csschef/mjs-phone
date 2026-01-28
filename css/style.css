@@ -126,9 +126,11 @@ main {
     border-radius: var(--phone-radius);
     padding: var(--phone-frame);
     box-shadow:
-        12px 32px 60px rgba(0, 0, 0, 0.75),
-        6px 16px 30px rgba(0, 0, 0, 0.6),
-        2px 6px 12px rgba(0, 0, 0, 0.4);
+        inset -4px -8px 14px rgba(0, 0, 0, 0.8),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.04),
+        22px 64px 120px -24px rgba(0, 0, 0, 0.45),
+        6px 18px 28px rgba(0, 0, 0, 0.55),
+        2px 6px 10px rgba(0, 0, 0, 0.35);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -142,12 +144,11 @@ main::before {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-
     background: linear-gradient(
         135deg,
-        rgba(0, 0, 0, 0) 0%,    /* helt ingen skugga i vänster topp */
-        rgba(0, 0, 0, 0) 40%,   /* fortsatt helt ren yta */
-        rgba(0, 0, 0, 0.35) 100% /* skugga byggs upp mot höger botten */
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(0, 0, 0, 0.35) 100%
     );
 }
 
