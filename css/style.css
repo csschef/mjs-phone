@@ -90,7 +90,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("../assets/img/bg3.jpg") center / cover no-repeat;
+    background: url("../assets/img/bg.jpg") center / cover no-repeat;
     font-family: var(--font-base);
     color: var(--color-text);
     position: relative;
@@ -120,22 +120,37 @@ main > section {
 }
 
 main {
-    width: 390px;
-    height: 820px;
-    padding: 0;
+    width: clamp(360px, 15vw, 520px);
+    aspect-ratio: 390 / 820;
     background: var(--bg-phone);
     border-radius: var(--phone-radius);
     padding: var(--phone-frame);
     box-shadow:
-        0 28px 60px rgba(0, 0, 0, 0.85),
-        0 10px 25px rgba(0, 0, 0, 0.82),
-        0 2px 6px rgba(0, 0, 0, 0.8);
+        12px 32px 60px rgba(0, 0, 0, 0.75),
+        6px 16px 30px rgba(0, 0, 0, 0.6),
+        2px 6px 12px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    gap: 0px;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
+
+/* Diagonal skugga */
+main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0) 0%,    /* helt ingen skugga i vänster topp */
+        rgba(0, 0, 0, 0) 40%,   /* fortsatt helt ren yta */
+        rgba(0, 0, 0, 0.35) 100% /* skugga byggs upp mot höger botten */
+    );
+}
+
 
 .camera-hole {
     position: absolute; 
