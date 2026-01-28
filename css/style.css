@@ -15,7 +15,7 @@
     --color-base-white: #ffffff; 
 
     --phone-radius: 32px;
-    --phone-frame: 8px; /* tjocklek på svart kant */
+    --phone-frame: 8px; /* tjocklek på svart kant runt telefonen */
     --radius-xl: 32px;
     --radius-lg: 28px;
     --radius-md: 22px;
@@ -146,21 +146,6 @@ main {
     overflow: hidden;
 }
 
-/* Diagonal skugga */
-main::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 40%,
-        rgba(0, 0, 0, 0.35) 100%
-    );
-}
-
 
 .camera-hole {
     position: absolute; 
@@ -193,10 +178,6 @@ main::before {
 }
 
 .create-contact {
-    /* width: calc(100% + 28px);  */
-    /* margin-left: -14px;
-    margin-right: -14px; */
-    /* margin-bottom: -16px;  */
     padding: 14px 14px 16px; 
     background: linear-gradient(
         to top,

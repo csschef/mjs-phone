@@ -80,7 +80,7 @@ function deleteAllContacts() {
 
 
 
-// Event listener för formuläret som används för att skapa en ny kontakt
+// Event listener för formuläret som används för att skapa en ny kontakt.
 contactForm.addEventListener('submit', (event) => {
     // Förhindrar att sidan laddas om
     event.preventDefault();
@@ -90,7 +90,7 @@ contactForm.addEventListener('submit', (event) => {
         contactName.value.trim() === '' ||
         contactPhone.value.trim() === ''
     ) {
-        showError("You can't save an empty contact...<br>get some friends first!");
+        showError("You can't save an empty contact...<br>get some friends first!"); //Denna visas även om man har en sparad kontakt men försöker skapa en ny tom kontakt. Dumt. Borde ändra formulering eller lägga till fler if-satser.
         rejectedSound.currentTime = 0;
         rejectedSound.play();
         return;

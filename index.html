@@ -11,8 +11,8 @@
     >
 </head>
 <body>
-<audio id="MJ-hee-hee" src="assets/sound/hee-hee.mp3" type="audio/mp3"></audio>
-<audio id="MJ-shamona" src="assets/sound/shamona.mp3" type="audio/mp3"></audio>
+<audio id="MJ-hee-hee" src="assets/sound/hee-hee.mp3"></audio>
+<audio id="MJ-shamona" src="assets/sound/shamona.mp3"></audio>
 <audio id="MJ-beat-it" src="assets/sound/beat-it.mp3"></audio>
 <audio id="MJ-why-not" src="assets/sound/why-not.mp3"></audio>
 <audio id="MJ-rejected" src="assets/sound/rejected.mp3"></audio>
@@ -21,12 +21,12 @@
   </video>
     <main>
         <img
-    id="reflection"
-    src="assets/img/reflection.gif"
-    alt=""
-    aria-hidden="true"> 
+        id="reflection"
+        src="assets/img/reflection.gif"
+        alt=""
+        aria-hidden="true"> 
         <div class="camera-hole"></div>
-        <div class="glass-layer">
+        <div class="glass-layer"></div>
             <div class="status-bar">
                 <div class="status-left">
                     <span class="time">3:47 am</span>
@@ -45,71 +45,64 @@
                 <ul id="contact-list" aria-live="polite">
 
                 </ul>
-                <!-- Kommer behöva lägga till denna som variabel i JS för att skapa innerHtml -->
             </section>
 
             <section class="create-contact" id="create-contact-section">
                 <h1>Add contact</h1>
 
-        <form id="create-contact-form" autocomplete="off">
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Name"
-                class="input-field"
-            >
-
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Phone number"
-                class="input-field"
-            >
-
-            <div id="button-wrapper">
-                <button type="submit" class="create-contact-btn">
-                    <i class="fas fa-plus"></i>
-                    <span>create</span>
-                </button>
-
-                <div id="delete-all-slot">
-                    <button
-                        type="button"
-                        id="delete-all-contacts-btn"
-                        class="delete-all-contacts-btn"
+                <form id="create-contact-form" autocomplete="off">
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Name"
+                        class="input-field"
                     >
-                        <i class="fa-solid fa-trash"></i>
-                        <span>delete all</span>
-                    </button>
-
-                    <div id="delete-confirm-group" hidden>
-                        <button
-                            type="button"
-                            id="confirm-delete-all"
-                            class="icon-btn"
-                        >
-                            <i class="fa-solid fa-check"></i>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Phone number"
+                        class="input-field"
+                    >
+                    <div id="button-wrapper">
+                        <button type="submit" class="create-contact-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>create</span>
                         </button>
 
-                        <button
-                            type="button"
-                            id="cancel-delete-all"
-                            class="icon-btn"
-                        >
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
+                        <div id="delete-all-slot">
+                            <button
+                                type="button"
+                                id="delete-all-contacts-btn"
+                                class="delete-all-contacts-btn"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                <span>delete all</span>
+                            </button>
+
+                            <div id="delete-confirm-group" hidden>
+                                <button
+                                    type="button"
+                                    id="confirm-delete-all"
+                                    class="icon-btn"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="cancel-delete-all"
+                                    class="icon-btn"
+                                >
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            </div>
-        </form>
-
+                </form>
             </section>
-    </div>
     </main>
-
     <script src="js/script.js"></script>
 </body>
 </html>
