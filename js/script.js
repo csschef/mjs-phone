@@ -5,7 +5,6 @@ const contactPhone = document.getElementById('phone'); // Hämtar telefonnummer-
 const contactList = document.getElementById('contact-list'); // Hämtar kontaktlistan och sparar i en variabel
 const heeHeeSound = document.getElementById('MJ-hee-hee'); // Ljud är kul
 const shamonaSound = document.getElementById('MJ-shamona');
-const yowSound = document.getElementById('MJ-yow');
 const beatitSound = document.getElementById('MJ-beat-it');
 const whyNotSound = document.getElementById('MJ-why-not');
 const rejectedSound = document.getElementById('MJ-rejected');
