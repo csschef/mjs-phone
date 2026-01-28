@@ -90,7 +90,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("../assets/img/bg2.jpg") center / cover no-repeat;
+    background: url("../assets/img/bg3.jpg") center / cover no-repeat;
     font-family: var(--font-base);
     color: var(--color-text);
     position: relative;
