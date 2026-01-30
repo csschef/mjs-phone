@@ -284,7 +284,7 @@ function displayContacts() {
 displayContacts();
 
 
-//Bonus
+//Bonus Time shows correct on phone
 function updateTime() {
     const timeEl = document.querySelector('.time');
     if (!timeEl) return;
@@ -303,3 +303,44 @@ function updateTime() {
 updateTime();
 
 setInterval(updateTime, 60 * 1000);
+
+
+//Batteristatus räknar ner
+function startFakeBattery() {
+    const batteryIcon = document.getElementById('battery-icon');
+    const batteryText = document.getElementById('battery-text');
+
+    let batteryLevel = 99;
+
+    function updateBatteryUI(level) {
+        batteryText.textContent = `${level}%`;
+
+        // Ta bort alla batteri-klasser
+        batteryIcon.className = 'fa-solid';
+
+        if (level > 75) {
+            batteryIcon.classList.add('fa-battery-full');
+        } else if (level > 50) {
+            batteryIcon.classList.add('fa-battery-three-quarters');
+        } else if (level > 25) {
+            batteryIcon.classList.add('fa-battery-half');
+        } else if (level > 5) {
+            batteryIcon.classList.add('fa-battery-quarter');
+        } else {
+            batteryIcon.classList.add('fa-battery-empty');
+        }
+    }
+
+    // Kör var X sekund
+    setInterval(() => {
+        updateBatteryUI(batteryLevel);
+
+        batteryLevel--;
+
+        if (batteryLevel < 0) {
+            batteryLevel = 99;
+        }
+    }, 3500); //3,5sek mellan körningen
+}
+
+startFakeBattery();
