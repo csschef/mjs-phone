@@ -284,7 +284,7 @@ function displayContacts() {
 displayContacts();
 
 
-//Bonus Time shows correct on phone
+// Bonus Time shows correct on phone
 function updateTime() {
     const timeEl = document.querySelector('.time');
     if (!timeEl) return;
@@ -305,7 +305,7 @@ updateTime();
 setInterval(updateTime, 60 * 1000);
 
 
-//Batteristatus räknar ner
+// Bonus 2 Batteristatus som räknar ner
 function startFakeBattery() {
     const batteryIcon = document.getElementById('battery-icon');
     const batteryText = document.getElementById('battery-text');
