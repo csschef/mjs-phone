@@ -81,6 +81,8 @@ Data is automatically saved to localStorage after:
 - Delete
 - Delete All
 
+---
+
 ## 🎨 Design
 
 The application is styled as a simulated smartphone interface with:
@@ -89,3 +91,11 @@ The application is styled as a simulated smartphone interface with:
 - Glassmorphism effects
 - Dynamic status bar (time + battery)
 - Interactive UI states
+
+---
+
+## ▶️ Run Project
+
+- Clone repository
+- Open index.html in browser
+- No build tools required.
