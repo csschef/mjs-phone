@@ -5,7 +5,7 @@ The app allows users to create, edit, delete and persist contacts using Local St
 
 <img width="2080" height="1105" alt="image" src="https://github.com/user-attachments/assets/6fb2594e-4d56-480f-9e0b-cfc7d4377696" />
 
-### Preview
+### Live version
 https://csschef.github.io/mjs-phone/
 
 ---
