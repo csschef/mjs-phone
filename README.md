@@ -1,4 +1,4 @@
-# 📱 MJ's Phone – Contact List App
+# MJ's Phone – Contact List App
 
 A JavaScript contact list application built as a school assignment.  
 The app allows users to create, edit, delete and persist contacts using Local Storage.
@@ -10,7 +10,7 @@ https://csschef.github.io/mjs-phone/
 
 ---
 
-## 📚 Assignment Overview
+## Assignment Overview
 
 The task was to build a contact list application with:
 
@@ -25,22 +25,22 @@ VG requirements included stricter validation, reusable functions in global scope
 
 ---
 
-## 🚀 Features
+## Features
 
-- ➕ Create new contacts  
-- ✏️ Edit contacts (toggle between edit/save)  
-- 🗑 Delete individual contacts  
-- 🧹 Delete entire contact list (with confirmation)  
-- ❌ Prevent empty contacts  
-- ⚠️ Custom error messages rendered in HTML  
-- 💾 Local Storage persistence (survives hard refresh)  
-- 🔊 Sound effects for actions  
-- ⏰ Live clock (updates every minute)  
-- 🔋 Simulated battery indicator  
+- Create new contacts  
+- Edit contacts (toggle between edit/save)  
+- Delete individual contacts  
+- Delete entire contact list (with confirmation)  
+- Prevent empty contacts  
+- Custom error messages rendered in HTML  
+- Local Storage persistence (survives hard refresh)  
+- Sound effects for actions  
+- Live clock (updates every minute)  
+- Simulated battery indicator  
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - HTML  
 - CSS (custom phone UI design)  
@@ -50,7 +50,7 @@ VG requirements included stricter validation, reusable functions in global scope
 
 ---
 
-## 🧠 Code Structure
+## Code Structure
 
 Core logic is written as reusable functions in global scope:
 
@@ -65,7 +65,7 @@ All contacts are stored in an array and synchronized with Local Storage.
 
 ---
 
-## 💾 Data Handling
+## Data Handling
 
 Contacts are stored as objects:
 
@@ -85,7 +85,7 @@ Data is automatically saved to localStorage after:
 
 ---
 
-## 🎨 Design
+## Design
 
 The application is styled as a simulated smartphone interface with:
 
@@ -96,7 +96,7 @@ The application is styled as a simulated smartphone interface with:
 
 ---
 
-## ▶️ Run Project
+## Run Project
 
 - Clone repository
 - Open index.html in browser
